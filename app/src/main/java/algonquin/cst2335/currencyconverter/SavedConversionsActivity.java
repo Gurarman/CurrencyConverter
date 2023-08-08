@@ -75,7 +75,7 @@ public class SavedConversionsActivity extends AppCompatActivity {
         });
     }
     private void updateConversionWithCurrentRate(Conversion conversion) {
-        String apiKey = "YOUR_API_KEY";  // Your API key (should be stored securely)
+        String apiKey = "901a2e7a9bc5c1f9c07442d7a095e3196d7e8c7f";
         String baseCurrency = conversion.getSourceCurrency();
         String targetCurrency = conversion.getDestinationCurrency();
 
