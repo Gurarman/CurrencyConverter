@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- EditText for entering the amount of money -->
+    <EditText
+        android:id="@+id/amountEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter amount"
+        android:inputType="numberDecimal"
+        android:background="@drawable/rounded_edittext"
+        android:padding="10dp"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- EditText for the source currency -->
+    <EditText
+        android:id="@+id/sourceCurrencyEditText"
+        android:layout_width="176dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:hint="Source Currency"
+        app:layout_constraintEnd_toStartOf="@+id/swapImageButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amountEditText" />
+
+    <!-- ImageButton to swap the currencies -->
+    <ImageButton
+        android:id="@+id/swapImageButton"
+        android:layout_width="10dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/swap_icon"
+        app:layout_constraintEnd_toStartOf="@+id/destinationCurrencyEditText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sourceCurrencyEditText"
+        app:layout_constraintTop_toBottomOf="@+id/amountEditText" />
+
+    <!-- EditText for the destination currency -->
+    <EditText
+        android:id="@+id/destinationCurrencyEditText"
+        android:layout_width="176dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:hint="Destination Currency"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/swapImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/amountEditText" />
+
+    <!-- Button for converting currency -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/convertButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:elevation="2dp"
+        android:text="Convert"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swapImageButton" />
+
+    <!-- RecyclerView for conversions in this session -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/conversionRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnShowSavedConversions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/convertedAmountText" />
+
+    <!-- Button to navigate to saved conversions activity -->
+    <Button
+        android:id="@+id/btnShowSavedConversions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Show Saved Conversions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conversionRecyclerView" />
+
+    <TextView
+        android:id="@+id/convertedAmountText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/convertButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
