@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CurrencyConverter</string>
+    <string name="enter_amount">Entrez le montant</string>
+    <string name="source_currency">Monnaie d\'origine</string>
+    <string name="target_currency">Monnaie cible</string>
+    <string name="convert">Convertir</string>
+    <string name="show_saved_conversions">Afficher les conversions enregistrées</string>
+    <string name="converted_amount">Montant converti</string>
+    <string name="help_title">Comment utiliser</string>
+    <string name="help_message">1. Entrez le montant que vous souhaitez convertir.\n
+    2. Spécifiez la devise source et la devise cible.\n
+    3. Cliquez sur \'Convertir\' pour voir le résultat de la conversion.\n
+    4. Utilisez \'Inverser\' pour inverser la conversion de devise.\n
+    5. Visualisez les conversions enregistrées en cliquant sur 'Afficher les conversions sauvegardées'.\n
+    Remarque: Assurez-vous d'avoir une connexion internet active.</string>
+    <string name="help_positive_button">Compris</string>
+</resources>

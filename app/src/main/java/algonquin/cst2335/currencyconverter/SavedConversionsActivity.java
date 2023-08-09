@@ -3,7 +3,9 @@ package algonquin.cst2335.currencyconverter;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,13 +25,28 @@ import algonquin.cst2335.currencyconverter.Data.Conversion;
 import algonquin.cst2335.currencyconverter.Data.ConversionAdapter;
 import algonquin.cst2335.currencyconverter.Data.ConversionViewModel;
 
+/**
+ * Activity to display and manage saved currency conversions.
+ * <p>
+ * Allows users to view their saved conversions, update conversion rates, and clear all saved conversions.
+ * </p>
+ */
 public class SavedConversionsActivity extends AppCompatActivity {
 
-    // UI components for displaying the saved conversions and managing user actions
+    /** RecyclerView to display the list of saved conversions. */
     private RecyclerView savedConversionsRecyclerView;
+
+    /** Adapter to bind conversions data to the RecyclerView. */
     private ConversionAdapter adapter;
+
+    /** ViewModel to manage the conversions data. */
     private ConversionViewModel viewModel;
 
+    /**
+     * Called when the activity is first created.
+     *
+     * @param savedInstanceState Bundle containing saved instance state, if any.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +61,21 @@ public class SavedConversionsActivity extends AppCompatActivity {
         // Set up the RecyclerView to display the saved conversions
         savedConversionsRecyclerView = findViewById(R.id.savedConversionsRecyclerView);
 
-        // Initialize adapter for the RecyclerView.
-        // No action is defined for item clicks in this context.
-        adapter = new ConversionAdapter(conversion -> {});
+        adapter = new ConversionAdapter(conversion -> {
+            ConversionDetailFragment detailFragment = new ConversionDetailFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("sourceCurrency", conversion.getSourceCurrency());
+            bundle.putString("destinationCurrency", conversion.getDestinationCurrency());
+            bundle.putString("exchangeRate", conversion.getExchangeRate());
+            bundle.putString("conversionDate", conversion.getDate());
+            detailFragment.setArguments(bundle);
+
+            // Safeguard against showing fragment when activity is finishing or destroyed
+            if (!isFinishing() && !isDestroyed()) {
+                detailFragment.show(getSupportFragmentManager(), "ConversionDetail");
+            }
+        });
+
 
         savedConversionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         savedConversionsRecyclerView.setAdapter(adapter);
@@ -69,11 +99,25 @@ public class SavedConversionsActivity extends AppCompatActivity {
             }
         });
 
-        // Set up the button to clear all saved conversions from the database
         btnClearAll.setOnClickListener(v -> {
-            viewModel.clearAllConversions(); // Calls a method to delete all conversions from the database
+            new AlertDialog.Builder(SavedConversionsActivity.this)
+                    .setTitle("Clear All Conversions")
+                    .setMessage("Are you sure you want to delete all saved conversions?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        // Calls a method to delete all conversions from the database
+                        viewModel.clearAllConversions();
+                        Snackbar.make(v, "All conversions cleared", Snackbar.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("No", null) // No action on clicking 'NO' option
+                    .show();
         });
+
     }
+    /**
+     * Updates the conversion rate for a saved conversion.
+     *
+     * @param conversion The saved conversion to be updated.
+     */
     private void updateConversionWithCurrentRate(Conversion conversion) {
         String apiKey = "901a2e7a9bc5c1f9c07442d7a095e3196d7e8c7f";
         String baseCurrency = conversion.getSourceCurrency();

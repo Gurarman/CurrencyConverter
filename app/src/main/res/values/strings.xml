@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">CurrencyConverter</string>
+    <string name="enter_amount">Enter amount</string>
+    <string name="source_currency">Source Currency</string>
+    <string name="target_currency">Target Currency</string>
+    <string name="convert">Convert</string>
+    <string name="show_saved_conversions">Show Saved Conversions</string>
+    <string name="converted_amount">Converted Amount</string>
+    <string name="help_title">How to Use</string>
+    <string name="help_message">1. Enter the amount you want to convert.\n
+    2. Specify the source and destination currency.\n
+    3. Click on \'Convert\' to see the conversion result.\n
+    4. Use \'Swap\' to reverse the currency conversion.\n
+    5. View saved conversions by clicking on 'Show Saved Conversions'.\n
+    Note: Ensure you have an active internet connection.</string>
+    <string name="help_positive_button">Got it</string>
 </resources>

@@ -1,4 +1,4 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,6 +29,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sourceCurrencyAmount" />
 
-    <!-- Additional details can be added as required -->
+      <!-- Add a TextView for exchange rate -->
+      <TextView
+          android:id="@+id/exchangeRate"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:textSize="18sp"
+          android:layout_marginTop="16dp"
+          android:text="Exchange Rate: 1 USD = 0.85 EUR"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/destinationCurrencyAmount" />
+
+      <!-- Add a TextView for the date of conversion -->
+      <TextView
+          android:id="@+id/conversionDate"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:textSize="18sp"
+          android:layout_marginTop="16dp"
+          android:text="Date: 01-01-2023"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/exchangeRate" />
+
+
+      <!-- Additional details can be added as required -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
